@@ -1,0 +1,29 @@
+[
+  {
+    "id": "demo-001",
+    "name": "Demo Building A",
+    "area": "Central Delhi · sample record",
+    "ramps": true,
+    "elevator": true,
+    "stepFreeEntrance": true,
+    "accessibleToilet": true
+  },
+  {
+    "id": "demo-002",
+    "name": "Community Library B",
+    "area": "Pune · sample record",
+    "ramps": true,
+    "elevator": false,
+    "stepFreeEntrance": true,
+    "accessibleToilet": true
+  },
+  {
+    "id": "demo-003",
+    "name": "Market Hall C",
+    "area": "Mumbai · sample record",
+    "ramps": false,
+    "elevator": true,
+    "stepFreeEntrance": false,
+    "accessibleToilet": false
+  }
+]

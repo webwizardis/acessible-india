@@ -1,0 +1,1 @@
+export const speechLocale = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN' };

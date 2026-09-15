@@ -21,7 +21,7 @@ export async function describeImage(imageData) {
   if (!apiKey) {
     const error = new Error('GEMINI_API_KEY is not configured.');
     error.status = 503;
-    error.publicMessage = 'Vision analysis is not configured yet. Add GEMINI_API_KEY in Replit Secrets, or continue with the other tools.';
+    error.publicMessage = 'Vision analysis is not configured yet. Set GEMINI_API_KEY in your environment, or continue with the other tools.';
     throw error;
   }
   const base64 = imageData.replace(/^data:image\/[a-zA-Z+]+;base64,/, '');

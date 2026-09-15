@@ -4,12 +4,15 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
+    "dev": "node server/server.js",
     "client": "npm --prefix client run dev",
     "server": "node server/server.js",
     "build": "npm --prefix client run build",
     "start": "node server/server.js"
   },
+  "workspaces": [
+    "client"
+  ],
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.35",
     "@vitejs/plugin-react": "^4.7.0",

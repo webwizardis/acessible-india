@@ -9,7 +9,7 @@ import accessibilityRouter from './routes/accessibility.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
-const port = Number(process.env.PORT || 3001);
+const port = Number(process.env.PORT || 3000);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.disable('x-powered-by');
@@ -20,8 +20,25 @@ app.use('/api/vision', visionRouter);
 app.use('/api/accessibility', accessibilityRouter);
 
 const clientDist = path.resolve(__dirname, '../client/dist');
-app.use(express.static(clientDist));
-app.get(/.*/, (_request, response) => response.sendFile(path.join(clientDist, 'index.html')));
+
+if (process.env.NODE_ENV !== 'production') {
+  try {
+    const { createServer: createViteServer } = await import('vite');
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'spa',
+      root: path.resolve(__dirname, '../client'),
+    });
+    app.use(vite.middlewares);
+  } catch (err) {
+    console.warn('Vite dev middleware failed to initialize, falling back to static files:', err);
+    app.use(express.static(clientDist));
+    app.get(/.*/, (_request, response) => response.sendFile(path.join(clientDist, 'index.html')));
+  }
+} else {
+  app.use(express.static(clientDist));
+  app.get(/.*/, (_request, response) => response.sendFile(path.join(clientDist, 'index.html')));
+}
 app.use(errorHandler);
 
 app.listen(port, '0.0.0.0', () => console.log(`Accessible India API listening on port ${port}`));

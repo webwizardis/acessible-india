@@ -1,0 +1,17 @@
+{
+  "name": "accessible-india",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "npm --prefix client run dev",
+    "server": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "concurrently": "^9.2.1"
+  }
+}
